@@ -4,7 +4,7 @@
 * @author Mauricio Toro, Andres Paez
  * @version 1
  */
-
+import java.lang.Math;
 public class Punto {
 
     private double x, y;
@@ -13,6 +13,8 @@ public class Punto {
      * Se inicializan los atributos de clase
      */
     public Punto(double x, double y) {
+        this.x=x;
+        this.y=y;
 
     }
 
@@ -22,7 +24,7 @@ public class Punto {
      * @return eje coordenado x
      */
     public double x() {
-
+        return x;
     }
 
     /**
@@ -31,7 +33,7 @@ public class Punto {
      * @return eje coordenado y
      */
     public double y() {
-
+        return y;
     }
 
     /**
@@ -44,7 +46,8 @@ public class Punto {
      */
     
     public double radioPolar() {
-
+        //raiz x al cuadrado+y al cuadrado
+        return Math.sqrt((Math.pow(x,2)+Math.pow(y,2)));
     }
 
 
@@ -57,7 +60,7 @@ public class Punto {
      * @see <a href="http://mathworld.wolfram.com/PolarCoordinates.html"> Ver más <a/>
      */
     public double anguloPolar() {
-
+        return Math.atan(y/x);
     }
 
     /**
@@ -76,6 +79,6 @@ public class Punto {
      */
   
     public double distanciaEuclidiana(Punto otro) {
-        
+        return Math.sqrt(Math.pow((otro.x()-x),2)+Math.pow((otro.y()-y),2));
     }
 }
