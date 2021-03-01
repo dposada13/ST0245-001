@@ -1,1 +1,73 @@
+public boolean groupSum6(int start, int[] nums, int target) {
+  if(start == nums.length)
+ 	{
+		if(target == 0)
+  		return true;
+  	return false;
+ 	}
+ 	if(nums[start] == 6)
+ 		return groupSum6(start + 1, nums, target - nums[start]);
+  if(groupSum6(start + 1, nums, target - nums[start]))
+  	return true;
+  return groupSum6(start + 1, nums, target);
+}
+----------------------------------------------------------------------------------------------
+public boolean groupNoAdj(int start, int[] nums, int target) {
+  if (start >= nums.length)
+  return (target == 0);
+  if (groupNoAdj(start+1, nums, target))
+  return true;
+   if (groupNoAdj(start+2, nums, target-nums[start])) 
+  return true;
+
+  return false;
+
+}
+-----------------------------------------------------------------------------------------
+public boolean split53(int[] nums) {
+  if(nums.length == 0)
+return false;
+else
+return groupSum53(0, nums, 0, 0);
+}
+ 
+public boolean groupSum53(int i, int[] nums, int sum5, int sum3)
+{
+if(i == nums.length)
+return (sum5 == sum3);
+ 
+if(nums[i]%5==0){
+return groupSum53(i+1, nums, sum5 + nums[i], sum3);
+}
+else if(nums[i]%3==0){
+return groupSum53(i+1, nums, sum5, sum3 + nums[i]);
+}
+ 
+else
+return groupSum53( i+1, nums, sum5 + nums[i], sum3) || groupSum53(i+1, nums, sum5, sum3 + nums[i]);
+}
+---------------------------------------------------------------------------------------------------
+public boolean splitOdd10(int[] nums) {
+return sidesAreOdd10(nums, 0, 0, 0);	}
+public boolean sidesAreOdd10(int[] nums, int i, int group1, int group2)
+{
+	if(i == nums.length)
+		return (group1 % 2 == 1 && group2 % 10 == 0 || group2 % 2 == 1 && group1 % 10 == 0);
+	if(sidesAreOdd10(nums, i + 1, group1 + nums[i], group2))
+		return true;
+	return sidesAreOdd10(nums, i + 1, group1, group2 + nums[i]);
+}
+---------------------------------------------------------------------------------------------------------
+public boolean splitArray(int[] nums) {
+  return sidesAreEqual(nums, 0, 0);	
+}
+public boolean sidesAreEqual(int[] nums, int i, int balance){
+	if(i == nums.length)
+		return (balance == 0);
+	if(sidesAreEqual(nums, i + 1, balance + nums[i]))
+		return true;
+	return sidesAreEqual(nums, i + 1, balance - nums[i]);
+}
+
+
 
